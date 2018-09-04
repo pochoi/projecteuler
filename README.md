@@ -1,3 +1,7 @@
 # Project Euler
 
-my Project Euler solution
+Project Euler solution in Julia
+
+https://projecteuler.net/
+
+Chi Po Choi
