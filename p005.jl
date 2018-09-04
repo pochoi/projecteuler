@@ -9,7 +9,7 @@ function isAllEqual(nums::AbstractVector{T}) where T <: Integer
     return flag
 end
 
-function solution1(nums::AbstractVector{T}) where T <: Integer
+function solution(nums::AbstractVector{T}) where T <: Integer
     x = copy(collect(nums))
     while !isAllEqual(x)
         k₀ = findmin(x)[2]
@@ -28,14 +28,14 @@ function allprime(n)
     return ps
 end
 
-function solution2(n)
+function solution(n::T) where T <: Integer
     ps = allprime(n)
-    m = solution1(ps)
-    return solution1([setdiff(2:n, ps); m])
+    m = solution(ps)
+    return solution([setdiff(2:n, ps); m])
 end
 
-@time solution1(1:10) == 2520
-@time solution1(2:20)
+@time solution(2:10) == 2520
+@time s = solution(2:20)
 
-@time solution2(10) == 2520
-@time solution2(20)
+@time solution(10) == 2520
+@time solution(20) == s
