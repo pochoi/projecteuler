@@ -34,6 +34,18 @@ function solution(n::T) where T <: Integer
     return solution([setdiff(2:n, ps); m])
 end
 
+function solution_successive(nums::AbstractVector{T}) where T <: Integer
+    len = length(nums)
+    if len == 0
+        return 0
+    end
+    s = nums[1]
+    for k in 2:len
+        s = solution([s, nums[k]])
+    end
+    return s
+end
+
 function solution_recursive(nums::AbstractVector{T}) where T <: Integer
     len = length(nums)
     if len <= 2
@@ -53,6 +65,9 @@ end
 
 @time solution(10) == 2520
 @time solution(20) == s
+
+@time solution_successive(2:10) == 2520
+@time solution_successive(2:20) == s
 
 @time solution_recursive(2:10) == 2520
 @time solution_recursive(2:20) == s
